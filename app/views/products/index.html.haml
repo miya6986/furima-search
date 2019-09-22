@@ -1,0 +1,51 @@
+%nav.navbar.navbar-fixed-top.navbar-expand-sm.navbar-light.bg-info.fixed-top
+  = link_to "furima-search", "#", class: "navbar-brand text-white"
+  %button.navbar-toggler{ type: "button", "data-toggle": "collapse", "data-target": "#navbarNav", "aria-controls": "navbarNav", "aria-expanded": "false", "aria-label": "Toggle navigation" }
+    %span.navbar-toggler-icon
+  #navbarNav.collapse.navbar-collapse.justify-content-end
+    %ul.navbar-nav
+      %li.nav-item
+        = link_to "マイリスト", "#", class: "nav-link text-white text-right"
+      %li.nav-item
+        = link_to "Sign In", "#", class: "nav-link text-white text-right"
+.contents-wrapper.mt-56px.justify-content-center
+  .contents.container.pt-56px
+    .search-site.row
+      %button.yahoo.col-sm.btn.btn-warning{ type: "button", "data-toggle": "button", "aria-pressed": "false", "autocomplete": "off" } ヤフオク
+      %button.merucari.col-sm.btn.btn-danger{ type: "button", "data-toggle": "button", "aria-pressed": "false", "autocomplete": "off" } メルカリ
+      %button.rakuma.col-sm.btn.btn-primary{ type: "button", "data-toggle": "button", "aria-pressed": "false", "autocomplete": "off" } ラクマ
+    .search-form-wrapper.row.d-flex.align-items-center.justify-content-center.mt-4.mb-5
+      = form_with url: search_sites_products_path, class: "search-form form-group d-flex mb-0" do |form|
+        .search-field
+          = form.text_field :keyword, local: true, class: "search-field__text form-control", placeholder: "検索ワードを入力してください", size: "35"
+        = form.submit "検索", class: "search-form__btn btn btn-info ml-2"
+        %button.search-config.drawer-toggle.btn.btn-secondary.ml-2{ type: "button" } 絞り込み
+        %nav.drawer-nav
+          .drawer-nav-inner-wrapper.mt-56px
+            %button.drawer-nav-close.drawer-toggle{ type: "button" }
+              %i.far.fa-window-close
+            .bid-price.mt-4
+              .bid-price-min.d-flex.justify-content-end.pr-1
+                .bid-price__min--label
+                  = form.label "price-min", for: "price-min"
+                .bid-price__min--text
+                  = form.text_field :minprice, id: "price-min"
+              .bid-price-max.d-flex.justify-content-end.pr-1
+                .bid-price__max--label
+                  = form.label "price-max", for: "price-max"
+                .bid-price__max--text
+                  = form.text_field :maxprice, id: "price-max"
+            .search-item-condition.d-flex.justify-content-around.mt-4
+              .search-item-condition__new
+                = form.label :condition, "全て", { value: :new }
+                = form.radio_button :condition, "all", { checked: true }
+              .search-item-condition__all
+                = form.label :condition, "未使用", { value: :all }
+                = form.radio_button :condition, "new"
+    .search-result.row
+      .search-result__image.col-sm.border-right.border-left.border-secondary
+        = link_to "gazou", "#"
+      .search-result__title.col-sm.border-right.border-secondary
+        = link_to "title", "#"
+      .search-result__price.col-sm.border-right.border-secondary 20000
+      .search-result__remaining-time.col-sm.border-right.border-secondary 4日24時間

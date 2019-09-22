@@ -36,7 +36,7 @@ module FurimaSearch
       g.stylesheets false
       g.javascripts false
       g.helper false
-      g.template_engine false 
+      g.template_engine :haml
       g.test_framework :rspec,
                         view_specs: false,
                         helper_specs: false,
